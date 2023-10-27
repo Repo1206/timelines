@@ -237,7 +237,7 @@ const marvel = [
     takesPlace: 2025,
     description: "",
     universe: "MCU",
-    phase: "5",
+    phase: "4",
   },
 
 
@@ -465,27 +465,66 @@ const marvel = [
   },
 ];
 
-const order = marvel.map((marvel) => marvel.takesPlace);
-const titles = marvel.map((marvel) => marvel.title);
-const releaseDate = marvel.map((marvel) => marvel.released);
-const phase = marvel.map((marvel) => ({ title: marvel.title, phase: marvel.phase }));
-
-const releaseDateOrder = marvel.map((marvel) => ({
-  title: marvel.title,
-    released: marvel.released
-}));
-const watchOrder = marvel.map((marvel) => ({
+const orders = marvel.map((marvel) => ({
   title: marvel.title,
   takesPlace: marvel.takesPlace,
+  released: marvel.released,
+  phase: marvel.phase,
 }));
 
-const chronologicalOrder = watchOrder.sort((a, b) => a.takesPlace - b.takesPlace);
-const releaseOrder = releaseDateOrder.sort((a, b) => a.released - b.released)
-const whatPhase = phase.sort((a,b) => a.phase - b.phase )
-// console.log(order);
-// console.log(titles);
-// console.log(releaseDate);
-// console.log(watchOrder);
-console.log(chronologicalOrder)
-console.log(releaseOrder)
-console.log(whatPhase)
+const chronologicalOrder = [...orders].sort((a, b) => a.takesPlace - b.takesPlace);
+const releaseOrder = [...orders].sort((a, b) => a.released - b.released);
+const phaseOrder = [...orders].sort((a, b) => a.phase - b.phase);
+
+console.log("Chronological Order:", chronologicalOrder);
+console.log("Release Order:", releaseOrder);
+console.log("Phase Order:", phaseOrder);
+
+
+
+
+// Select the container element by its id or class
+const container = document.querySelector('.timeline-area'); // Replace with your actual selector
+
+// Define the timeline data (you can use an array to store your timeline data)
+// Create an array to hold the timeline data
+const timelineData = [];
+
+// Iterate through the marvel data and generate the timeline data
+marvel.forEach(movie => {
+  timelineData.push({ year: movie.takesPlace, event: `${movie.title} (${getMonthName(movie.released)} ${movie.released})` });
+  // You can use a function to get the month name from the release date
+});
+
+// Function to get the month name from a numeric month (1-12)
+function getMonthName(month) {
+  const months = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+  ];
+  return months[month - 1];
+}
+
+// Now, your timelineData is generated based on the marvel data
+console.log(timelineData);
+
+// Loop through the timeline data and create elements for each event
+timelineData.forEach(item => {
+    // Create a new timeline item element
+    const timelineItem = document.createElement('div');
+    timelineItem.classList.add('single-item'); // You can define styles for this class in your CSS
+
+    // // Create elements for the year and event text
+    // const yearElement = document.createElement('span');
+    // yearElement.textContent = item.year;
+
+    const eventElement = document.createElement('span');
+    eventElement.textContent = item.event;
+
+    // Append the year and event elements to the timeline item
+    // timelineItem.appendChild(yearElement);
+    timelineItem.appendChild(eventElement);
+
+    // Append the timeline item to the container
+    container.appendChild(timelineItem);
+});
