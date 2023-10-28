@@ -23,11 +23,15 @@ h1, h2, h3, h4, h5, html {
 
 html {font-size: 100%;} /* 16px */
 
+.universe h1{
+    position: static;
+}
 h1 {
     font-size: 4.210rem; /* 67.36px */
     text-align: center;
     margin-top: 8%;
     letter-spacing: 5px;
+    
 
 }
 .wrapper{
@@ -52,15 +56,26 @@ h1 {
     height: 100px;
 }
 
-.single-item{
-    width: 150px;
-    display: inline-block;
-    position: relative;
-    height: 100%;
-    margin-right: 70px;
-    transition: width .5s;
-    z-index: 1;
+.items-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-x: scroll; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent line breaks */
+    padding: 20px 0;
 }
+
+.single-item {
+    width: 200px; /* Adjust this value as needed */
+    display: inline-block;
+    margin-right: 70px;
+    transition: width 0.5s;
+    z-index: 1;
+  }
+  
+
+
+
 .img-area {
     display: none;
     position: absolute;
@@ -84,10 +99,9 @@ h1 {
     max-width: 100%;
     border: 5px solid var(--accent)
 }
-.img-area a span{
-    position: absolute;
-    width: 250%;
-    margin-left: -75%;
+.img-area a span {
+    width: auto; /* Adjust as needed */
+    margin-left: 10px; /* Adjust as needed */
     bottom: -40px;
     left: 0;
     font-size: 20px;
@@ -95,8 +109,8 @@ h1 {
     text-decoration: none;
     white-space: nowrap;
     color: var(--accent);
-}
-.img-areaa span::after{
+  }
+img-area a span::after{
     margin-left: 5px;
 }
 .single-item.active .img-area{
