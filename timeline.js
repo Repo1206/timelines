@@ -540,9 +540,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (currentOrder === releaseOrder) {
       currentOrder = chronologicalOrder;
       document.querySelector('.order').textContent = 'Chronological Order';
+      // Sort by "Takes Place"
+      currentOrder.sort((a, b) => a.takesPlace - b.takesPlace);
     } else {
       currentOrder = releaseOrder;
       document.querySelector('.order').textContent = 'Release Order';
+      // Sort by "Released"
+      currentOrder.sort((a, b) => a.released - b.released);
     }
     // Remove the existing items from the container
     while (container.firstChild) {
