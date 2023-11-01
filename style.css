@@ -58,15 +58,14 @@ h1 {
 
 .items-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     overflow-x: scroll; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Prevent line breaks */
     padding: 20px 0;
 }
 
 .single-item {
-    width: 200px; /* Adjust this value as needed */
     display: inline-block;
     margin-right: 70px;
     transition: width 0.5s;
